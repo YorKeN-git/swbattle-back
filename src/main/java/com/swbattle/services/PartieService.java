@@ -5,6 +5,7 @@ import java.util.Random;
 import org.springframework.stereotype.Service;
 import com.swbattle.models.Hero;
 import com.swbattle.models.Monstre;
+import com.swbattle.models.Partie;
 
 @Service
 public class PartieService {
@@ -13,7 +14,7 @@ public class PartieService {
 		//Bonus statistique Arme 
 		double bonusMasse = 0.15; //15% de dégat crit en plus 
 		int bonusEpee = 200; //200 d'atk en plus 
-		double bonusDague = 0.3; //30% de TxCrit en plus 
+		int bonusDague = 30; //30% de TxCrit en plus 
 		int bonusArc = 300; //300 d'atk en plus 
 		int bonusBaton = 300; //300 point de vie en plus => soin du prêtre = 10% de ses HpMax
 		
@@ -29,14 +30,14 @@ public class PartieService {
 					//Arme = Epee 
 					System.out.println("J'ai créer une epee");
 					tabHero[i].setAtk(1600 + bonusEpee);
-					tabHero[i].setTxCrit(0.45);
+					tabHero[i].setTxCrit(45);
 					tabHero[i].setDegatCrit(1.2);
 					tabHero[i].setUrlIcone("./assets/images/icon_classe/guerrier.jpg");
 				}else {
 					//Arme = masse 
 					System.out.println("J'ai créer une masse");
 					tabHero[i].setAtk(1600);
-					tabHero[i].setTxCrit(0.45);
+					tabHero[i].setTxCrit(45);
 					tabHero[i].setDegatCrit(1.2 + bonusMasse);
 					tabHero[i].setUrlIcone("./assets/images/icon_classe/guerrier.jpg");
 				}
@@ -48,7 +49,7 @@ public class PartieService {
 					tabHero[i].setHp(600 + bonusBaton);
 					tabHero[i].setDef(50);
 					tabHero[i].setAtk(1000);
-					tabHero[i].setTxCrit(0.4);
+					tabHero[i].setTxCrit(40);
 					tabHero[i].setDegatCrit(1.1);
 					tabHero[i].setUrlIcone("./assets/images/icon_classe/priest.jpg");
 				}else if(arme.equals("Epee")) {
@@ -56,7 +57,7 @@ public class PartieService {
 					tabHero[i].setHp(600);
 					tabHero[i].setDef(50);
 					tabHero[i].setAtk(1000 + bonusEpee);
-					tabHero[i].setTxCrit(0.4);
+					tabHero[i].setTxCrit(40);
 					tabHero[i].setDegatCrit(1.1);
 					tabHero[i].setUrlIcone("./assets/images/icon_classe/priest.jpg");
 				}else {
@@ -65,7 +66,7 @@ public class PartieService {
 					tabHero[i].setHp(600);
 					tabHero[i].setDef(50);
 					tabHero[i].setAtk(1000);
-					tabHero[i].setTxCrit(0.4);
+					tabHero[i].setTxCrit(40);
 					tabHero[i].setDegatCrit(1.1 + bonusMasse);
 					tabHero[i].setUrlIcone("./assets/images/icon_classe/priest.jpg");
 				}
@@ -78,7 +79,7 @@ public class PartieService {
 					tabHero[i].setHp(600);
 					tabHero[i].setDef(50);
 					tabHero[i].setAtk(2000 + bonusEpee);
-					tabHero[i].setTxCrit(0.45);
+					tabHero[i].setTxCrit(45);
 					tabHero[i].setDegatCrit(1.4);
 					tabHero[i].setUrlIcone("./assets/images/icon_classe/assassin.jpg");
 				}else {
@@ -87,7 +88,7 @@ public class PartieService {
 					tabHero[i].setHp(600);
 					tabHero[i].setDef(50);
 					tabHero[i].setAtk(2000);
-					tabHero[i].setTxCrit(0.45 + bonusDague);
+					tabHero[i].setTxCrit(45 + bonusDague);
 					tabHero[i].setDegatCrit(1.4);
 					tabHero[i].setUrlIcone("./assets/images/icon_classe/assassin.jpg");
 				}
@@ -98,7 +99,7 @@ public class PartieService {
 				tabHero[i].setHp(700);
 				tabHero[i].setDef(50);
 				tabHero[i].setAtk(1900 + bonusArc);
-				tabHero[i].setTxCrit(0.45);
+				tabHero[i].setTxCrit(45);
 				tabHero[i].setDegatCrit(1.3);
 				tabHero[i].setUrlIcone("./assets/images/icon_classe/archer.jpg");
 				break;
@@ -115,7 +116,7 @@ public class PartieService {
 		//Bonus statistique Arme 
 		double bonusMasse = 0.15; //15% de dégat crit en plus 
 		int bonusEpee = 200; //200 d'atk en plus 
-		double bonusDague = 0.3; //30% de TxCrit en plus 
+		int bonusDague = 30; //30% de TxCrit en plus 
 		
 		for (int i = 0; i < tabMonstre.length; i++) {
 			Random objGenerator = new Random();
@@ -129,7 +130,7 @@ public class PartieService {
 				tabMonstre[i].setHp(700);
 				tabMonstre[i].setDef(80);
 				tabMonstre[i].setAtk(2000);
-				tabMonstre[i].setTxCrit(0.45);
+				tabMonstre[i].setTxCrit(45);
 				tabMonstre[i].setDegatCrit(1.2 + bonusMasse);
 				tabMonstre[i].setUrlIcone("./assets/images/icon_monstre/monstre1.jpg");
 			}else if ((randMonstre >= 23) && (randMonstre < 46)) {
@@ -141,7 +142,7 @@ public class PartieService {
 				tabMonstre[i].setHp(800);
 				tabMonstre[i].setDef(100);
 				tabMonstre[i].setAtk(2000);
-				tabMonstre[i].setTxCrit(0.45);
+				tabMonstre[i].setTxCrit(45);
 				tabMonstre[i].setDegatCrit(1.2 + bonusMasse);
 				tabMonstre[i].setUrlIcone("./assets/images/icon_monstre/monstre2.jpg");
 			}else if ((randMonstre >= 46) && (randMonstre < 69)) {
@@ -153,7 +154,7 @@ public class PartieService {
 				tabMonstre[i].setHp(800);
 				tabMonstre[i].setDef(70);
 				tabMonstre[i].setAtk(2000 + bonusEpee);
-				tabMonstre[i].setTxCrit(0.45);
+				tabMonstre[i].setTxCrit(45);
 				tabMonstre[i].setDegatCrit(1.2);
 				tabMonstre[i].setUrlIcone("./assets/images/icon_monstre/monstre3.jpg");
 			}else if ((randMonstre >= 69) && (randMonstre < 93)) {
@@ -165,7 +166,7 @@ public class PartieService {
 				tabMonstre[i].setHp(500);
 				tabMonstre[i].setDef(50);
 				tabMonstre[i].setAtk(2000);
-				tabMonstre[i].setTxCrit(0.45 + bonusDague);
+				tabMonstre[i].setTxCrit(45 + bonusDague);
 				tabMonstre[i].setDegatCrit(1.2);
 				tabMonstre[i].setUrlIcone("./assets/images/icon_monstre/monstre4.jpg");
 			}else {
@@ -177,7 +178,7 @@ public class PartieService {
 				tabMonstre[i].setHp(1000);
 				tabMonstre[i].setDef(200);
 				tabMonstre[i].setAtk(3000);
-				tabMonstre[i].setTxCrit(0.45);
+				tabMonstre[i].setTxCrit(45);
 				tabMonstre[i].setDegatCrit(1.5 + bonusMasse);
 				tabMonstre[i].setUrlIcone("./assets/images/icon_boss/boss.jpg");
 			}
@@ -216,6 +217,60 @@ public class PartieService {
 		Random objGenerator = new Random();
 		int randNomF = objGenerator.nextInt(listNomF.length);
 		return listNomF[randNomF]; 
+	}
+	
+	public Partie attaquerMonstres(Partie partie) {
+		//Recuperd tabMonstre et TabHero 
+		Hero[] tabHero = new Hero[partie.getTabHero().length];
+		Monstre[] tabMonstre = new Monstre[partie.getTabMonstre().length];
+		tabHero = partie.getTabHero();
+		tabMonstre = partie.getTabMonstre();
+		boolean isCoupCritique; 
+		//les héros attaque aléatoirement les monstres
+		for (int i = 0; i < partie.getTabHero().length; i++) {
+			//choisit au hasard un monstre de la liste 
+			Random objGenerateur = new Random();
+			int randIndexMonstre = objGenerateur.nextInt(partie.getTabMonstre().length); 
+			isCoupCritique = coupCritique(tabHero[i]);
+			if(isCoupCritique) {
+				//Coup critique formule : dégat = (ATK / DEF) * DegatCrit 
+				int hpMonstre = tabMonstre[randIndexMonstre].getHp();
+				int atkHero = tabHero[i].getAtk(); 
+				int defMonstre = tabMonstre[randIndexMonstre].getDef();
+				double degatCrit = tabMonstre[randIndexMonstre].getDegatCrit();
+				int degat = (int)(atkHero / defMonstre);
+				degat = (int)(degat * degatCrit);
+				tabMonstre[randIndexMonstre].setHp(hpMonstre - degat); 
+			}else {
+				//Pas de coup critique : formule dégat = ATK / DEF 
+				int hpMonstre = tabMonstre[randIndexMonstre].getHp();
+				int atkHero = tabHero[i].getAtk(); 
+				int defMonstre = tabMonstre[randIndexMonstre].getDef();
+				double degatFait = atkHero / defMonstre ; 
+				int degatConvert = (int)degatFait;
+				tabMonstre[randIndexMonstre].setHp(hpMonstre - degatConvert); 
+			}
+		}
+		partie.setTabHero(tabHero);
+		partie.setTabMonstre(tabMonstre);
+		return partie;
+	}
+	
+	public Boolean coupCritique(Hero hero) {
+		System.out.println("J'ai reçu ce héro :" + hero);
+		//Cette méthode va permettre de savoir si le hero va taper avec un coup critique 
+		boolean isCoupCritique; 
+		Random objGenerateur = new Random();
+		int chanceCoupCritique = objGenerateur.nextInt(100);
+		int txCritHero = hero.getTxCrit();
+		if( chanceCoupCritique <= txCritHero ) {
+			//Le hero va faire un coup critique 
+			isCoupCritique = true;
+		}else {
+			// tape normalement 
+			isCoupCritique = false;
+		}
+		return isCoupCritique;
 	}
 
 }

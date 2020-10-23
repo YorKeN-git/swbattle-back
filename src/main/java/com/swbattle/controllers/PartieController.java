@@ -50,6 +50,8 @@ public class PartieController {
 	public Partie attaquerMonstre(@RequestBody Partie entity) {
 		//Met à jour le numéro de la manche 
 		entity.setNumeroManche(entity.getNumeroManche() +1);
+		//les Heros attaques les montres 
+		entity = this.service.attaquerMonstres(entity);
 		//Sauvegarde la partie dans notre BDD MongoDB
 		return this.repository.save(entity);
 	}

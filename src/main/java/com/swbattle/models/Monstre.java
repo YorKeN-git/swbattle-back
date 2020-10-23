@@ -7,7 +7,7 @@ public class Monstre {
 	int hp;
 	int def;
 	int atk;
-	double txCrit;
+	int txCrit;
 	double degatCrit;
 	String urlIcone;
 	
@@ -16,11 +16,11 @@ public class Monstre {
 	}
 
 	
-	public double getTxCrit() {
+	public int getTxCrit() {
 		return txCrit;
 	}
 
-	public void setTxCrit(double txCrit) {
+	public void setTxCrit(int txCrit) {
 		this.txCrit = txCrit;
 	}
 

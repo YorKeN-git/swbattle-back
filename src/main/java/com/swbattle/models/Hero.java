@@ -8,7 +8,7 @@ public class Hero {
 	int hp;
 	int hpMax;
 	int atk;
-	double txCrit;
+	int txCrit;
 	double degatCrit;
 	String arme;
 	String urlIcone; 
@@ -19,12 +19,12 @@ public class Hero {
 	}
 
 	
-	public double getTxCrit() {
+	public int getTxCrit() {
 		return txCrit;
 	}
 
 
-	public void setTxCrit(double txCrit) {
+	public void setTxCrit(int txCrit) {
 		this.txCrit = txCrit;
 	}
 
