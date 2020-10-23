@@ -10,41 +10,96 @@ import com.swbattle.models.Monstre;
 public class PartieService {
 	
 	public Hero[] creerHero(Hero[] tabHero){
-		System.out.println("Je suis bien dans mon service ! ");
+		//Bonus statistique Arme 
+		double bonusMasse = 0.15; //15% de dégat crit en plus 
+		int bonusEpee = 200; //200 d'atk en plus 
+		double bonusDague = 0.3; //30% de TxCrit en plus 
+		int bonusArc = 300; //300 d'atk en plus 
+		int bonusBaton = 300; //300 point de vie en plus => soin du prêtre = 10% de ses HpMax
+		
 		for (int i = 0; i < tabHero.length; i++) {
+			String arme = tabHero[i].getArme(); 
+			System.out.println(arme);
 			switch (tabHero[i].getClasse()) {
 			case "guerrier":
 				tabHero[i].setHpMax(800);
 				tabHero[i].setHp(800);
 				tabHero[i].setDef(200);
-				tabHero[i].setAtk(100);
-				tabHero[i].setUrlIcone("./assets/images/icon_classe/guerrier.jpg");
-				System.out.println("J'ai créer un guerrer !");
+				if( arme.equals("Epee")) {
+					//Arme = Epee 
+					System.out.println("J'ai créer une epee");
+					tabHero[i].setAtk(1600 + bonusEpee);
+					tabHero[i].setTxCrit(0.45);
+					tabHero[i].setDegatCrit(1.2);
+					tabHero[i].setUrlIcone("./assets/images/icon_classe/guerrier.jpg");
+				}else {
+					//Arme = masse 
+					System.out.println("J'ai créer une masse");
+					tabHero[i].setAtk(1600);
+					tabHero[i].setTxCrit(0.45);
+					tabHero[i].setDegatCrit(1.2 + bonusMasse);
+					tabHero[i].setUrlIcone("./assets/images/icon_classe/guerrier.jpg");
+				}
 				break;
 			
 			case "soigneur":
-				tabHero[i].setHpMax(600);
-				tabHero[i].setHp(600);
-				tabHero[i].setDef(50);
-				tabHero[i].setAtk(50);
-				tabHero[i].setUrlIcone("./assets/images/icon_classe/priest.jpg");
-				System.out.println("J'ai créer un soigneur !");
+				if(arme.equals("Baton")) {
+					tabHero[i].setHpMax(600 + bonusBaton);
+					tabHero[i].setHp(600 + bonusBaton);
+					tabHero[i].setDef(50);
+					tabHero[i].setAtk(1000);
+					tabHero[i].setTxCrit(0.4);
+					tabHero[i].setDegatCrit(1.1);
+					tabHero[i].setUrlIcone("./assets/images/icon_classe/priest.jpg");
+				}else if(arme.equals("Epee")) {
+					tabHero[i].setHpMax(600);
+					tabHero[i].setHp(600);
+					tabHero[i].setDef(50);
+					tabHero[i].setAtk(1000 + bonusEpee);
+					tabHero[i].setTxCrit(0.4);
+					tabHero[i].setDegatCrit(1.1);
+					tabHero[i].setUrlIcone("./assets/images/icon_classe/priest.jpg");
+				}else {
+					//masse 
+					tabHero[i].setHpMax(600);
+					tabHero[i].setHp(600);
+					tabHero[i].setDef(50);
+					tabHero[i].setAtk(1000);
+					tabHero[i].setTxCrit(0.4);
+					tabHero[i].setDegatCrit(1.1 + bonusMasse);
+					tabHero[i].setUrlIcone("./assets/images/icon_classe/priest.jpg");
+				}
+				
 				break;
 			
 			case "assassin":
-				tabHero[i].setHpMax(600);
-				tabHero[i].setHp(600);
-				tabHero[i].setDef(50);
-				tabHero[i].setAtk(300);
-				tabHero[i].setUrlIcone("./assets/images/icon_classe/assassin.jpg");
-				System.out.println("J'ai créer un assassin !");
+				if(arme.equals("Epee")) {
+					tabHero[i].setHpMax(600);
+					tabHero[i].setHp(600);
+					tabHero[i].setDef(50);
+					tabHero[i].setAtk(2000 + bonusEpee);
+					tabHero[i].setTxCrit(0.45);
+					tabHero[i].setDegatCrit(1.4);
+					tabHero[i].setUrlIcone("./assets/images/icon_classe/assassin.jpg");
+				}else {
+					//Dague 
+					tabHero[i].setHpMax(600);
+					tabHero[i].setHp(600);
+					tabHero[i].setDef(50);
+					tabHero[i].setAtk(2000);
+					tabHero[i].setTxCrit(0.45 + bonusDague);
+					tabHero[i].setDegatCrit(1.4);
+					tabHero[i].setUrlIcone("./assets/images/icon_classe/assassin.jpg");
+				}
 				break;
 			
 			case "archer":
 				tabHero[i].setHpMax(700);
 				tabHero[i].setHp(700);
 				tabHero[i].setDef(50);
-				tabHero[i].setAtk(200);
+				tabHero[i].setAtk(1900 + bonusArc);
+				tabHero[i].setTxCrit(0.45);
+				tabHero[i].setDegatCrit(1.3);
 				tabHero[i].setUrlIcone("./assets/images/icon_classe/archer.jpg");
 				break;
 				
@@ -57,6 +112,10 @@ public class PartieService {
 	
 	
 	public Monstre[] creerMonstre(Monstre[] tabMonstre) {
+		//Bonus statistique Arme 
+		double bonusMasse = 0.15; //15% de dégat crit en plus 
+		int bonusEpee = 200; //200 d'atk en plus 
+		double bonusDague = 0.3; //30% de TxCrit en plus 
 		
 		for (int i = 0; i < tabMonstre.length; i++) {
 			Random objGenerator = new Random();
@@ -65,11 +124,13 @@ public class PartieService {
 				//J'invoque le monstre 1
 				tabMonstre[i] = new Monstre(); 
 				tabMonstre[i].setNom(genererNomMonstreM());
-				tabMonstre[i].setArme("Masse");
+				tabMonstre[i].setArme("Masse"); //Add 15% de DegCrit 
 				tabMonstre[i].setHpMax(700);
 				tabMonstre[i].setHp(700);
 				tabMonstre[i].setDef(80);
-				tabMonstre[i].setAtk(100);
+				tabMonstre[i].setAtk(2000);
+				tabMonstre[i].setTxCrit(0.45);
+				tabMonstre[i].setDegatCrit(1.2 + bonusMasse);
 				tabMonstre[i].setUrlIcone("./assets/images/icon_monstre/monstre1.jpg");
 			}else if ((randMonstre >= 23) && (randMonstre < 46)) {
 				//J'invoque le monstre 2
@@ -79,17 +140,21 @@ public class PartieService {
 				tabMonstre[i].setHpMax(800);
 				tabMonstre[i].setHp(800);
 				tabMonstre[i].setDef(100);
-				tabMonstre[i].setAtk(150);
+				tabMonstre[i].setAtk(2000);
+				tabMonstre[i].setTxCrit(0.45);
+				tabMonstre[i].setDegatCrit(1.2 + bonusMasse);
 				tabMonstre[i].setUrlIcone("./assets/images/icon_monstre/monstre2.jpg");
 			}else if ((randMonstre >= 46) && (randMonstre < 69)) {
 				//J'invoque le monstre 3
 				tabMonstre[i] = new Monstre(); 
 				tabMonstre[i].setNom(genererNomMonstreM());
-				tabMonstre[i].setArme("Epee");
+				tabMonstre[i].setArme("Epee"); //Add 200 d'atk
 				tabMonstre[i].setHpMax(800);
 				tabMonstre[i].setHp(800);
 				tabMonstre[i].setDef(70);
-				tabMonstre[i].setAtk(150);
+				tabMonstre[i].setAtk(2000 + bonusEpee);
+				tabMonstre[i].setTxCrit(0.45);
+				tabMonstre[i].setDegatCrit(1.2);
 				tabMonstre[i].setUrlIcone("./assets/images/icon_monstre/monstre3.jpg");
 			}else if ((randMonstre >= 69) && (randMonstre < 93)) {
 				//J'invoque le monstre 4
@@ -99,7 +164,9 @@ public class PartieService {
 				tabMonstre[i].setHpMax(500);
 				tabMonstre[i].setHp(500);
 				tabMonstre[i].setDef(50);
-				tabMonstre[i].setAtk(200);
+				tabMonstre[i].setAtk(2000);
+				tabMonstre[i].setTxCrit(0.45 + bonusDague);
+				tabMonstre[i].setDegatCrit(1.2);
 				tabMonstre[i].setUrlIcone("./assets/images/icon_monstre/monstre4.jpg");
 			}else {
 				//J'invoque un Boss
@@ -109,7 +176,9 @@ public class PartieService {
 				tabMonstre[i].setHpMax(1000);
 				tabMonstre[i].setHp(1000);
 				tabMonstre[i].setDef(200);
-				tabMonstre[i].setAtk(300);
+				tabMonstre[i].setAtk(3000);
+				tabMonstre[i].setTxCrit(0.45);
+				tabMonstre[i].setDegatCrit(1.5 + bonusMasse);
 				tabMonstre[i].setUrlIcone("./assets/images/icon_boss/boss.jpg");
 			}
 		}

@@ -45,4 +45,13 @@ public class PartieController {
 		//Sauvegarde la partie dans notre BDD MongoDB
 		return this.repository.save(entity);
 	}
+	
+	@PostMapping("/attaquerMonstres")
+	public Partie attaquerMonstre(@RequestBody Partie entity) {
+		//Met à jour le numéro de la manche 
+		entity.setNumeroManche(entity.getNumeroManche() +1);
+		//Sauvegarde la partie dans notre BDD MongoDB
+		return this.repository.save(entity);
+	}
+	
 }

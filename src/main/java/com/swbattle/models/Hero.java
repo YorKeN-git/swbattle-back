@@ -8,9 +8,36 @@ public class Hero {
 	int hp;
 	int hpMax;
 	int atk;
+	double txCrit;
+	double degatCrit;
 	String arme;
 	String urlIcone; 
 	 
+
+	public Hero() {
+		super();
+	}
+
+	
+	public double getTxCrit() {
+		return txCrit;
+	}
+
+
+	public void setTxCrit(double txCrit) {
+		this.txCrit = txCrit;
+	}
+
+
+	public double getDegatCrit() {
+		return degatCrit;
+	}
+
+
+	public void setDegatCrit(double degatCrit) {
+		this.degatCrit = degatCrit;
+	}
+
 
 	public String getUrlIcone() {
 		return urlIcone;
@@ -50,10 +77,6 @@ public class Hero {
 		this.nom = nom;
 	}
 
-
-	public Hero() {
-		super();
-	}
 
 
 	public String getClasse() {
