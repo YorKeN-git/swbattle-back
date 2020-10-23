@@ -226,30 +226,37 @@ public class PartieService {
 		tabHero = partie.getTabHero();
 		tabMonstre = partie.getTabMonstre();
 		boolean isCoupCritique; 
+		boolean isChanceSoigner;
 		//les héros attaque aléatoirement les monstres
 		for (int i = 0; i < partie.getTabHero().length; i++) {
 			//choisit au hasard un monstre de la liste 
 			Random objGenerateur = new Random();
 			int randIndexMonstre = objGenerateur.nextInt(partie.getTabMonstre().length); 
-			isCoupCritique = coupCritique(tabHero[i]);
-			if(isCoupCritique) {
-				//Coup critique formule : dégat = (ATK / DEF) * DegatCrit 
-				int hpMonstre = tabMonstre[randIndexMonstre].getHp();
-				int atkHero = tabHero[i].getAtk(); 
-				int defMonstre = tabMonstre[randIndexMonstre].getDef();
-				double degatCrit = tabMonstre[randIndexMonstre].getDegatCrit();
-				int degat = (int)(atkHero / defMonstre);
-				degat = (int)(degat * degatCrit);
-				tabMonstre[randIndexMonstre].setHp(hpMonstre - degat); 
+			//Si c'est au tour du soigneur de joué 
+			if(tabHero[i].getClasse().equals("soigneur")) {
+				isChanceSoigner = chanceSoigner();
 			}else {
-				//Pas de coup critique : formule dégat = ATK / DEF 
-				int hpMonstre = tabMonstre[randIndexMonstre].getHp();
-				int atkHero = tabHero[i].getAtk(); 
-				int defMonstre = tabMonstre[randIndexMonstre].getDef();
-				double degatFait = atkHero / defMonstre ; 
-				int degatConvert = (int)degatFait;
-				tabMonstre[randIndexMonstre].setHp(hpMonstre - degatConvert); 
+				isCoupCritique = coupCritique(tabHero[i]);
+				if(isCoupCritique) {
+					//Coup critique formule : dégat = (ATK / DEF) * DegatCrit 
+					int hpMonstre = tabMonstre[randIndexMonstre].getHp();
+					int atkHero = tabHero[i].getAtk(); 
+					int defMonstre = tabMonstre[randIndexMonstre].getDef();
+					double degatCrit = tabMonstre[randIndexMonstre].getDegatCrit();
+					int degat = (int)(atkHero / defMonstre);
+					degat = (int)(degat * degatCrit);
+					tabMonstre[randIndexMonstre].setHp(hpMonstre - degat); 
+				}else {
+					//Pas de coup critique : formule dégat = ATK / DEF 
+					int hpMonstre = tabMonstre[randIndexMonstre].getHp();
+					int atkHero = tabHero[i].getAtk(); 
+					int defMonstre = tabMonstre[randIndexMonstre].getDef();
+					double degatFait = atkHero / defMonstre ; 
+					int degatConvert = (int)degatFait;
+					tabMonstre[randIndexMonstre].setHp(hpMonstre - degatConvert); 
+				}
 			}
+			
 		}
 		partie.setTabHero(tabHero);
 		partie.setTabMonstre(tabMonstre);
@@ -271,6 +278,18 @@ public class PartieService {
 			isCoupCritique = false;
 		}
 		return isCoupCritique;
+	}
+	
+	public Boolean chanceSoigner() {
+		boolean isChanceSoigner;
+		Random objGenerateur = new Random();
+		int chanceSoigner = objGenerateur.nextInt(100);
+		if(chanceSoigner < 25) {
+			isChanceSoigner = true;
+		}else {
+			isChanceSoigner = false;
+		}
+		return isChanceSoigner;
 	}
 
 }
